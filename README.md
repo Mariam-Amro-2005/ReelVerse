@@ -1,12 +1,11 @@
-# React + Vite
+## 🔥 ReelVerse – Explore the Universe of Cinema
+ReelVerse is a sleek, React-based movie discovery web app powered by the TMDb API. Built for learning and fun, it lets users browse popular movies, explore by genre, view detailed movie pages with cast and metadata, and receive intelligent recommendations based on genres.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧩 Features:
+ - 🎬 Browse trending and popular movies
+ - 🎭 Filter by genre
+ - 🔍 Search by title
+ - 📄 Movie detail pages with cast, year, rating, and more
+ - 🌌 Smart recommendations based on genres
+ - 🎨 Light/Dark mode support
+ - 💻 Responsive UI built with modern React
