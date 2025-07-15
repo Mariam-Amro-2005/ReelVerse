@@ -1,5 +1,6 @@
 ## 🔥 ReelVerse – Explore the Universe of Cinema
 ReelVerse is a sleek, React-based movie discovery web app powered by the TMDb API. Built for learning and fun, it lets users browse popular movies, explore by genre, view detailed movie pages with cast and metadata, and receive intelligent recommendations based on genres.
+---
 
 ## 🧩 Features:
  - 🎬 Browse trending and popular movies
@@ -9,3 +10,17 @@ ReelVerse is a sleek, React-based movie discovery web app powered by the TMDb AP
  - 🌌 Smart recommendations based on genres
  - 🎨 Light/Dark mode support
  - 💻 Responsive UI built with modern React
+---
+
+## 🚀 Technologies:
+ - React (with hooks and context)
+ - React Router
+ - React Bootstrap
+ - TMDb API
+ - CSS
+ - GitHub Pages for deployment
+
+---
+📌 Disclaimer:
+This product uses the TMDb API but is not endorsed or certified by TMDb.
+
