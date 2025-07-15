@@ -1,0 +1,45 @@
+.genre-aside {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    padding: 1rem;
+    padding-top: 2.5rem;
+    background: #313131;
+    color: white;
+    /* border: red 1px solid; */
+}
+
+.genre-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    border-bottom: #555454 1px solid;
+    padding-bottom: 0.5rem;
+}
+
+.genre-list {
+    list-style: none;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    
+}
+
+.genre-list li {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.genre-list li:hover {
+    /*color: #f0f0f0;
+    */background: #444444;
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}

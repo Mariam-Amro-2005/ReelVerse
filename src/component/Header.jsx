@@ -2,7 +2,7 @@ import React from "react";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import SearchBar from "./SearchBar.jsx";
-import "../css/Header.css"; // Assuming you have a CSS file for styling
+import "../css/Header.css";
 
 function Header() {
     const [loggedIn, setLoggedIn] = useState(false);
