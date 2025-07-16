@@ -1,6 +1,6 @@
 import React, { use } from "react";
 import { useState, useEffect } from "react";
-import { useMovies } from "../context/MoviesContext";
+// import { useMovies } from "../context/MoviesContext";
 import MoviesGrid from "./MoviesGrid";
 import '../css/MovieArea.css'
 

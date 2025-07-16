@@ -1,15 +1,16 @@
 import React from "react";
 import MovieCard from "./MovieCard";
-import { useMovies } from "../context/MoviesContext";
+// import { useMedia } from "../context/MoviesContext";
 
 function MoviesGrid() {
-    const { movies } = useMovies();
+    // const { state } = useMedia();
+    // const { movies } = state;
 
     return(
         <div className="movies-grid">
-            {movies.map(movie => (
+            {/* {movies.map(movie => (
                 <MovieCard key={movie.id} movie={movie} />
-            ))}
+            ))} */}
         </div>
     )
 }
