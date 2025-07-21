@@ -17,6 +17,7 @@ export const MediaProvider = ({ children }) => {
     const [selectedGenre, setSelectedGenre] = useState(null); // Selected genre
     const [currentPage, setCurrentPage] = useState(1);
     const [currentMediaList, setCurrentMediaList] = useState([]); // List of movies or TV shows for the current page
+    const [currentGenreList, setCurrentGenreList] = useState([]); // List of movies or TV shows for the current page
     const [totalResults, setTotalResults] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
 
@@ -71,6 +72,8 @@ export const MediaProvider = ({ children }) => {
             } else if (selectedMediaType === 'tv') {
                 setTvGenres(data.genres || []);
             }
+            setCurrentGenreList(data.genres || []);
+            // console.log(currentGenreList);
         } catch (error) {
             console.error("Failed to fetch genres:", error);
         }
@@ -117,13 +120,14 @@ export const MediaProvider = ({ children }) => {
             }
             const data = await response.json();
             setSearchResults(data.results || []);
+            setCurrentMediaList(data.results || []); // Setting search results to current media list
+            setTotalResults(data.total_results);
+            setTotalPages(data.total_pages);
         } catch (error) {
             console.error("Failed to search media:", error);
         } finally {
             // Resetting pagination,genre, total results and pages
-            setTotalResults(searchResults.total_results);
-            setTotalPages(searchResults.total_pages);
-            setCurrentMediaList(searchResults); // Setting search results to current media list
+            
             setSelectedGenre(null);
             setLoading(false);
         }
@@ -166,7 +170,8 @@ export const MediaProvider = ({ children }) => {
     }, [mode, selectedMediaType, searchQuery, currentPage])
 
     // Fetch media content when genre or page changes
-        useEffect(() => {
+    useEffect(() => {
+        // console.log("clicked!", selectedGenre);
         if (mode !== 'genre') return;
         const page = prevGenre.current === selectedGenre ? currentPage : 1;
         setCurrentPage(page);
@@ -184,11 +189,19 @@ export const MediaProvider = ({ children }) => {
         }
     }, [mode, currentPage, selectedMediaType]);
 
+
+    // useEffect(() => {
+    //     console.log("Updated currentGenreList:", currentGenreList);
+    // }, [currentGenreList]);
+
+
     return (
         <MediaContext.Provider value={{ toggleMediaType, trendingMovies, movieGenres, 
                                         trendingTvShows, tvGenres, selectedMediaType, 
-                                        loading, currentMediaList, totalResults, totalPages, 
-                                        selectedGenre, changePage, setSearchQueryHandler }}>
+                                        loading, currentMediaList, currentGenreList, totalResults, totalPages, 
+                                        selectedGenre, setSelectedGenre, changePage, 
+                                        setSearchQueryHandler, searchQuery,
+                                        searchResults, setMode, mode }}>
             {children}
         </MediaContext.Provider>
     );

@@ -8,20 +8,6 @@ import "../css/Header.css";
 
 
 function Home() {
-    // const { movies, fetchMovies } = useContext(MovieContext);
-    // const [loading, setLoading] = useState(true);
-
-    // useEffect(() => {
-    //     const loadMovies = async () => {
-    //     await fetchMovies();
-    //     setLoading(false);
-    //     };
-    //     loadMovies();
-    //     }, [fetchMovies]);
-
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
 
     return (
     <div className="home">
