@@ -16,13 +16,14 @@
     letter-spacing: 0.5px;
     border-bottom: #555454 1px solid;
     padding-bottom: 0.5rem;
+    padding-left: 1rem;
 }
 
 .genre-list {
     list-style: none;
     font-size: 1.3rem;
     font-weight: 500;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     
 }
 

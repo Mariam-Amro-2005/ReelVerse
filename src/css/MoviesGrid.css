@@ -12,6 +12,11 @@
 
 .movie-card {
     height: 100%;
+    transition: all ease 0.5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
 }
 
 .movie-card .card-image img {
@@ -36,12 +41,12 @@
     height: 13rem;
     padding: 0.5rem 1rem 1.2rem;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-
     border-radius: 0 0 20px 20px;
     -webkit-border-radius: 0 0 20px 20px;
     -moz-border-radius: 0 0 20px 20px;
     -ms-border-radius: 0 0 20px 20px;
     -o-border-radius: 0 0 20px 20px;
+    
 }
 
 .card-bottom {
@@ -55,4 +60,12 @@
 .card-bottom .like-button {
     width: 30px;
     height: 30px;
+}
+
+.movie-card:hover{
+    transform: perspective(200) translateZ(5px);
+    -webkit-transform: perspective(200) translateZ(5px);
+    -moz-transform: perspective(200) translateZ(5px);
+    -ms-transform: perspective(200) translateZ(5px);
+    -o-transform: perspective(200) translateZ(5px);
 }

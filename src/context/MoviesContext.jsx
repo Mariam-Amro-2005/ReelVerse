@@ -27,6 +27,7 @@ export const MediaProvider = ({ children }) => {
     const [mode, setMode] = useState('trending'); // 'search' | 'genre' | 'trending'
     
     const prevMode = useRef(''); // 'search' | 'genre' | 'trending'
+    const prevMedia = useRef('');
     const prevGenre = useRef(null); // Selected genre
     const prevSearchQuery = useRef('');
 
@@ -163,6 +164,13 @@ export const MediaProvider = ({ children }) => {
         setSelectedGenre(null);
     }, [mode])
 
+    useEffect(()=> {
+        setCurrentPage(1);
+        setSearchQuery('');
+        setSelectedGenre(null);
+        prevMedia.current = selectedMediaType;
+    },[selectedMediaType])
+
     // Search media when search query or page changes
     useEffect(() => {
         if (mode !== 'search') return;
@@ -179,6 +187,9 @@ export const MediaProvider = ({ children }) => {
         const page = prevGenre.current === selectedGenre ? currentPage : 1;
         setCurrentPage(page);
         fetchMediaByGenre();
+        if (prevMedia !== selectedMediaType){
+            fetchGenres();
+        }
         prevGenre.current = selectedGenre; // Update previous genre
     }, [mode, selectedMediaType, selectedGenre, currentPage])
 

@@ -11,13 +11,6 @@ function MovieCard({movie}) {
         setLikedPicUrl(liked === true ? "/icons8-heart-filled-50.png" : "/icons8-heart-50.png")
     }
 
-//     useEffect(() => {
-//     setLikedPicUrl(
-//         liked
-//             ? `${import.meta.env.BASE_URL}/icons8-heart-filled-50.png`
-//             : `${import.meta.env.BASE_URL}/icons8-heart-50.png`
-//     );
-// }, [liked]);
 
     useEffect(() => {
         setLikedPicUrl(liked === true ? "/icons8-heart-filled-50.png" : "/icons8-heart-50.png")
