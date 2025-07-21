@@ -5,12 +5,12 @@ import '../css/MoviesGrid.css';
 
 
 function MoviesGrid() {
-    const {loading, mode, currentMediaList, selectedMediaType, toggleMediaType} = useMediaContext();
+    const {loading, mode, currentMediaList, currentPage } = useMediaContext();
     const [medialist, setMediaList] = useState(currentMediaList);
 
     useEffect(() => {
         setMediaList(currentMediaList);
-    }, [currentMediaList, mode])
+    }, [currentMediaList, mode, currentPage])
 
     return(
         <div className="movies-grid">

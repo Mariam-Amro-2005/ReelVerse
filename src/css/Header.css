@@ -1,3 +1,8 @@
+a, .no-style-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 body {
     display: flex;
     flex-direction: column;

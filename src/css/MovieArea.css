@@ -80,3 +80,36 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.page-btn, .pagination button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+}
+
+.page-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.page-btn:disabled,
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

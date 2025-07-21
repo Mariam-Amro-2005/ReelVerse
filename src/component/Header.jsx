@@ -23,7 +23,7 @@ function Header() {
     return(
         <>
         <div className="header">
-            <Link to="/" onClick={() => handleLogoClick()}>
+            <Link to="/" className="no-style-link" onClick={() => handleLogoClick()}>
                 <div className="logo">
                     <img src="./icons8-clapperboard-white-50.png" alt="Logo"/>
                     <div className="logo-text">ReelVerse</div>
@@ -34,10 +34,10 @@ function Header() {
                 {!loggedIn ? (
                     <>
                         <div className="signup">
-                            <Link to="/signup">Sign up</Link>
+                            <Link to="/signup" className="no-style-link">Sign up</Link>
                         </div>
                         <div className="login">
-                            <Link to="/login">Log in</Link>
+                            <Link to="/login" className="no-style-link">Log in</Link>
                         </div> 
                     </>
                 ) : (

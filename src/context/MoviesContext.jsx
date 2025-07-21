@@ -206,16 +206,11 @@ export const MediaProvider = ({ children }) => {
     }, [mode, currentPage, selectedMediaType]);
 
 
-    // useEffect(() => {
-    //     console.log("Updated currentGenreList:", currentGenreList);
-    // }, [currentGenreList]);
-
-
     return (
         <MediaContext.Provider value={{ toggleMediaType, trendingMovies, movieGenres, 
                                         trendingTvShows, tvGenres, selectedMediaType, 
                                         loading, currentMediaList, currentGenreList, totalResults, totalPages, 
-                                        selectedGenre, setSelectedGenre, changePage, 
+                                        selectedGenre, setSelectedGenre, changePage, currentPage, setCurrentPage,
                                         setSearchQueryHandler, searchQuery,
                                         searchResults, setMode, mode }}>
             {children}
