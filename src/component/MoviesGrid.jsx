@@ -1,16 +1,23 @@
-import React from "react";
 import MovieCard from "./MovieCard";
-// import { useMedia } from "../context/MoviesContext";
+import { useState, useEffect } from 'react'
+import { useMediaContext } from '../context/MoviesContext.jsx';
+import '../css/MoviesGrid.css';
+
 
 function MoviesGrid() {
-    // const { state } = useMedia();
-    // const { movies } = state;
+    const {loading, mode, currentMediaList, selectedMediaType, toggleMediaType} = useMediaContext();
+    const [medialist, setMediaList] = useState(currentMediaList);
+
+    useEffect(() => {
+        setMediaList(currentMediaList);
+    }, [currentMediaList, mode])
 
     return(
         <div className="movies-grid">
-            {/* {movies.map(movie => (
-                <MovieCard key={movie.id} movie={movie} />
-            ))} */}
+            {medialist.map((media) => (
+                <MovieCard key={media.id} movie={media} />
+
+            ))}
         </div>
     )
 }

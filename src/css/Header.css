@@ -10,7 +10,7 @@ body {
 .content {
     display: flex;
     flex-direction: row;
-    height: clamp(100vh, 200vh, 300vh);
+    height: clamp(100vh, 200vh, auto);
 }
 
 .header {
@@ -19,7 +19,7 @@ body {
     justify-content: space-between;
     width: 100%;
     /* background: #353535; */
-    background: #2a2929;
+    background-color: #2a2929;
     color: white;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }

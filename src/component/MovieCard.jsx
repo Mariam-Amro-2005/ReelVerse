@@ -1,8 +1,46 @@
-import React from "react";
+import { useState, useEffect } from 'react'
+import '../css/MoviesGrid.css';
 
-function MovieCard() {
+function MovieCard({movie}) {
+    const [liked, setLiked] = useState(false);
+    // const [likedPicUrl, setLikedPicUrl] = useState(`${import.meta.env.BASE_URL}/icons8-heart-50.png`);
+    const [likedPicUrl, setLikedPicUrl] = useState("/icons8-heart-50.png");
+
+    const handleLike = () => {
+        setLiked(prev => !prev);
+        setLikedPicUrl(liked === true ? "/icons8-heart-filled-50.png" : "/icons8-heart-50.png")
+    }
+
+//     useEffect(() => {
+//     setLikedPicUrl(
+//         liked
+//             ? `${import.meta.env.BASE_URL}/icons8-heart-filled-50.png`
+//             : `${import.meta.env.BASE_URL}/icons8-heart-50.png`
+//     );
+// }, [liked]);
+
+    useEffect(() => {
+        setLikedPicUrl(liked === true ? "/icons8-heart-filled-50.png" : "/icons8-heart-50.png")
+    }, [liked]);
+
+
     return(
-        <>MovieCard</>
+        <div className="movie-card">
+            <div className="card-image">
+                <img 
+                    src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} 
+                    alt={movie?.title || movie?.name} 
+                />
+            </div>
+            <div className="card-info">
+                <h3 className="media-title">{movie?.title || movie?.name}</h3>
+                <div className="card-bottom">
+                    <p className="media-vote">⭐ {movie.vote_average}</p>
+                    <img className="like-button" src={likedPicUrl} onClick={handleLike}></img>
+
+                </div>
+            </div>
+        </div>
     )
 }
 

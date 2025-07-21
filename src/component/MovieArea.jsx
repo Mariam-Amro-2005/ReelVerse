@@ -1,19 +1,22 @@
-import React, { use } from "react";
 import { useState, useEffect } from "react";
-// import { useMovies } from "../context/MoviesContext";
+import { useMediaContext } from '../context/MoviesContext.jsx';
 import MoviesGrid from "./MoviesGrid";
 import '../css/MovieArea.css'
 
 function MovieArea() {
-    const [mediaSelected, setMediaSelected] = useState('Movies');
+    const {loading, mode, currentMediaList, selectedMediaType, toggleMediaType} = useMediaContext();
+
+    const [mediaSelected, setMediaSelected] = useState(selectedMediaType === 'movie' ? 'Movies': 'TV Shows');
+    
 
     useEffect(() => {
         //Switch media type based on selection
-    }, [mediaSelected]);
+        setMediaSelected(selectedMediaType === 'movie' ? 'Movies': 'TV Shows');
+    }, [selectedMediaType, mode, currentMediaList]);
 
     return(
         <div className="movie-area">
-            <div className="movie-header">{mediaSelected}</div>
+            <div className="movie-header" onClick={()=> toggleMediaType()} >{mediaSelected}</div>
             <div className="filters">
                 <div className="order-by">
                     <label htmlFor="orderBy">Order by</label>

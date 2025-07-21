@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import '../css/GenreAside.css';
-import { MediaProvider, useMediaContext } from '../context/MoviesContext.jsx';
+import { useMediaContext } from '../context/MoviesContext.jsx';
 
 function GenreAside() {
-    const {currentGenreList, loading, setSelectedGenre} = useMediaContext();
+    const {currentGenreList, loading, setSelectedGenre, setMode} = useMediaContext();
 
     if (loading) {
         return null;
@@ -11,6 +10,7 @@ function GenreAside() {
 
     const handleGenreClick = (genre) => {
         setSelectedGenre(genre);
+        setMode('genre');
         console.log("clicked!", genre.name);
     };
 

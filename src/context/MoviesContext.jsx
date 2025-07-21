@@ -102,6 +102,7 @@ export const MediaProvider = ({ children }) => {
     // Set search query
     const setSearchQueryHandler = (query) => {
         setSearchQuery(query);
+        setMode('search');
     }
 
     // Search media by query
@@ -158,6 +159,8 @@ export const MediaProvider = ({ children }) => {
     useEffect(() => {
         setCurrentPage(1); // Reset to first page when mode changes
         prevMode.current = mode; // Update previous mode 
+        setSearchQuery('');
+        setSelectedGenre(null);
     }, [mode])
 
     // Search media when search query or page changes
