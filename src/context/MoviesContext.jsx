@@ -1,4 +1,4 @@
-import { createContext , useState, useEffect, useContext } from "react";
+import { createContext , useState, useEffect, useContext, useRef } from "react";
 
 const MediaContext = createContext();
 export const useMediaContext = () => useContext(MediaContext);
@@ -14,9 +14,6 @@ export const MediaProvider = ({ children }) => {
     const [selectedMediaType, setSelectedMediaType] = useState('movie');
     const [loading, setLoading] = useState(true);
 
-    const [selectedMedia, setSelectedMedia] = useState(null);   // selected movie or TV show
-    // const [selectedMediaId, setSelectedMediaId] = useState(null); // ID of the selected movie or TV show
-    // const [selectedMediaDetails, setSelectedMediaDetails] = useState(null); // Details of the selected movie or TV show
     const [selectedGenre, setSelectedGenre] = useState(null); // Selected genre
     const [currentPage, setCurrentPage] = useState(1);
     const [currentMediaList, setCurrentMediaList] = useState([]); // List of movies or TV shows for the current page
@@ -25,6 +22,14 @@ export const MediaProvider = ({ children }) => {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    
+    const [mode, setMode] = useState('trending'); // 'search' | 'genre' | 'trending'
+    
+    const prevMode = useRef(''); // 'search' | 'genre' | 'trending'
+    const prevGenre = useRef(null); // Selected genre
+    const prevSearchQuery = useRef('');
+
+    const [filter, setFilter] = useState({}); // Object to hold filter criteria for media
 
     const toggleMediaType = () => {
         setSelectedMediaType(prevType => (prevType === 'movie' ? 'tv' : 'movie'));
@@ -33,7 +38,7 @@ export const MediaProvider = ({ children }) => {
     const fetchTrendingContent = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`${apiUrl}/trending/${selectedMediaType}/day?api_key=${apikey}`);
+            const response = await fetch(`${apiUrl}/trending/${selectedMediaType}/day?api_key=${apikey}&page=${currentPage}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -43,6 +48,9 @@ export const MediaProvider = ({ children }) => {
             } else if (selectedMediaType === 'tv') {
                 setTrendingTvShows(data.results || []);
             }
+            setTotalPages(data.total_pages);
+            setTotalResults(data.total_results);
+            setCurrentMediaList(data.results || []); // Set current media list to trending Movies/TV shows
         } catch (error) {
             console.error("Failed to fetch movies:", error);
         } finally {
@@ -95,7 +103,7 @@ export const MediaProvider = ({ children }) => {
 
     // Search media by query
     const searchMedia = async () => {
-        query = searchQuery.trim();
+        const query = searchQuery.trim();
         if (!query) {
             setSearchResults([]);
             return;
@@ -103,7 +111,7 @@ export const MediaProvider = ({ children }) => {
         setLoading(true); // Need to implement skeleton loading
         // Fetch search results from TMDB API
         try {
-            const response = await fetch(`${apiUrl}/search/${selectedMediaType}?api_key=${apikey}&query=${encodeURIComponent(query)}&include_adult=false`);
+            const response = await fetch(`${apiUrl}/search/${selectedMediaType}?api_key=${apikey}&page=${currentPage}&query=${encodeURIComponent(query)}&include_adult=false`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -112,11 +120,14 @@ export const MediaProvider = ({ children }) => {
         } catch (error) {
             console.error("Failed to search media:", error);
         } finally {
+            // Resetting pagination,genre, total results and pages
+            setTotalResults(searchResults.total_results);
+            setTotalPages(searchResults.total_pages);
+            setCurrentMediaList(searchResults); // Setting search results to current media list
+            setSelectedGenre(null);
             setLoading(false);
         }
 
-        // Setting search results to current media list
-        setCurrentMediaList(searchResults);
     };
 
     const filterMedia = () => {
@@ -138,47 +149,49 @@ export const MediaProvider = ({ children }) => {
     useEffect(() => {
         Promise.all([fetchTrendingContent(), fetchGenres()]);
     }, []);
-    
+
+    // Mode management
+    useEffect(() => {
+        setCurrentPage(1); // Reset to first page when mode changes
+        prevMode.current = mode; // Update previous mode 
+    }, [mode])
+
+    // Search media when search query or page changes
+    useEffect(() => {
+        if (mode !== 'search') return;
+        const page = prevSearchQuery.current === searchQuery ? currentPage : 1;
+        setCurrentPage(page);
+        searchMedia();
+        prevSearchQuery.current = searchQuery; // Update previous search query
+    }, [mode, selectedMediaType, searchQuery, currentPage])
+
+    // Fetch media content when genre or page changes
+        useEffect(() => {
+        if (mode !== 'genre') return;
+        const page = prevGenre.current === selectedGenre ? currentPage : 1;
+        setCurrentPage(page);
+        fetchMediaByGenre();
+        prevGenre.current = selectedGenre; // Update previous genre
+    }, [mode, selectedMediaType, selectedGenre, currentPage])
+
     // Fetch trending content and genres when media type changes
     useEffect(() => {
-        if ((selectedMediaType === 'movie' && !movieGenres.length) || (selectedMediaType === 'tv' && !tvGenres.length)) {
+        if (mode !== 'trending') return;
+        const needsGenres = selectedMediaType === 'movie' ? !movieGenres.length : !tvGenres.length;
+        const needsTrending = selectedMediaType === 'movie' ? !trendingMovies.length : !trendingTvShows.length;
+        if (needsGenres || needsTrending) {
             Promise.all([fetchTrendingContent(), fetchGenres()]);
         }
-    }, [selectedMediaType]);
-
-    // Fetch media by genre when selected genre changes
-    useEffect(() => {
-        if (selectedGenre) {
-            fetchMediaByGenre();
-        }
-    }, [selectedGenre]);
-
-    // Fetch search results when search query changes
-    useEffect(() => {
-        if (searchQuery) {
-            searchMedia();
-        }
-        else {
-            setSearchResults([]);
-            setCurrentMediaList([]);
-        }
-    }, [searchQuery]);
+    }, [mode, currentPage, selectedMediaType]);
 
     return (
-        <MediaContext.Provider value={{ toggleMediaType, trendingMovies, movieGenres, trendingTvShows, tvGenres, selectedMediaType, loading, currentMediaList, totalResults, totalPages, selectedGenre, changePage, setSearchQueryHandler }}>
+        <MediaContext.Provider value={{ toggleMediaType, trendingMovies, movieGenres, 
+                                        trendingTvShows, tvGenres, selectedMediaType, 
+                                        loading, currentMediaList, totalResults, totalPages, 
+                                        selectedGenre, changePage, setSearchQueryHandler }}>
             {children}
         </MediaContext.Provider>
     );
 }
 
-
-// To do list:
-// 1. implement useEffect for when media list changes
-// 3. Implement media details fetching
-// 4. Implement media selection and details display
-// 5. Implement genre selection functionality
-
-// Finished:
-// 1. Implement search functionality *
-// 2. Implement pagination for media lists
-// 3. Implement trigger for searchMedia fn
+export default MediaProvider;
