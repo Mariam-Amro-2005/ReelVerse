@@ -1,7 +1,7 @@
-import { createContext ,  useState, useEffect, useContext, use} from "react";
+import { createContext , useState, useEffect, useContext } from "react";
 
 const MediaContext = createContext();
-// export const useMediaContext = () => useContext(MediaContext);
+export const useMediaContext = () => useContext(MediaContext);
 
 const apikey = import.meta.env.VITE_TMDB_API_KEY;
 const apiUrl = import.meta.env.VITE_TMDB_API_URL;
@@ -20,6 +20,7 @@ export const MediaProvider = ({ children }) => {
 
 
     const fetchTrendingContent = async () => {
+        setLoading(true);
         try {
             const response = await fetch(`${apiUrl}/trending/${selectedMediaType}/day?api_key=${apikey}`);
             if (!response.ok) {
@@ -62,7 +63,9 @@ export const MediaProvider = ({ children }) => {
     }, []);
     
     useEffect(() => {
-        Promise.all([fetchTrendingContent(), fetchGenres()]);
+        if ((selectedMediaType === 'movie' && !movieGenres.length) || (selectedMediaType === 'tv' && !tvGenres.length)) {
+            Promise.all([fetchTrendingContent(), fetchGenres()]);
+        }
     }, [selectedMediaType]);
 
     return (
