@@ -169,6 +169,7 @@ export const MediaProvider = ({ children }) => {
         setSearchQuery('');
         setSelectedGenre(null);
         prevMedia.current = selectedMediaType;
+        Promise.all([fetchTrendingContent(), fetchGenres()]);
     },[selectedMediaType])
 
     // Search media when search query or page changes
@@ -196,11 +197,12 @@ export const MediaProvider = ({ children }) => {
     // Fetch trending content and genres when media type changes
     useEffect(() => {
         if (mode !== 'trending') return;
-        const needsGenres = selectedMediaType === 'movie' ? !movieGenres.length : !tvGenres.length;
-        const needsTrending = selectedMediaType === 'movie' ? !trendingMovies.length : !trendingTvShows.length;
-        if (needsGenres || needsTrending) {
-            Promise.all([fetchTrendingContent(), fetchGenres()]);
-        }
+        Promise.all([fetchTrendingContent(), fetchGenres()]);
+        // const needsGenres = selectedMediaType === 'movie' ? !movieGenres.length : !tvGenres.length;
+        // const needsTrending = selectedMediaType === 'movie' ? !trendingMovies.length : !trendingTvShows.length;
+        // if (needsGenres || needsTrending) {
+        //     Promise.all([fetchTrendingContent(), fetchGenres()]);
+        // }
     }, [mode, currentPage, selectedMediaType]);
 
 

@@ -7,24 +7,28 @@ import { useMediaContext } from '../context/MoviesContext.jsx';
 
 function Header() {
     const [loggedIn, setLoggedIn] = useState(false);
+    const [reset, setReset] = useState(false);
     const { loading, mode, setMode, currentMediaList} = useMediaContext();
 
     const handleLogoClick = () => {
-        setMode('trending');
+        setReset(prev => !prev);
     }
 
-    // useEffect(()=>{
-
-    // }, [])
+    useEffect(()=>{
+        setMode('trending');
+        console.log("Logo clicked!")
+    }, [reset])
 
 
     return(
         <>
         <div className="header">
-            <div className="logo">
-                <img src="./icons8-clapperboard-white-50.png" alt="Logo"  onClick={() => handleLogoClick()}/>
-                <div className="logo-text">ReelVerse</div>
-            </div>
+            <Link to="/">
+                <div className="logo">
+                    <img src="./icons8-clapperboard-white-50.png" alt="Logo"  onClick={() => handleLogoClick()}/>
+                    <div className="logo-text">ReelVerse</div>
+                </div>
+            </Link>
             <SearchBar />
             <div className="User-Portal">
                 {!loggedIn ? (
