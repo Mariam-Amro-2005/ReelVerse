@@ -5,7 +5,7 @@ import '../css/MoviesGrid.css';
 
 
 function MoviesGrid() {
-    const {loading, mode, currentMediaList, currentPage } = useMediaContext();
+    const {loading, mode, currentMediaList, currentPage, selectedMediaType } = useMediaContext();
     const [medialist, setMediaList] = useState(currentMediaList);
 
     useEffect(() => {
@@ -15,7 +15,7 @@ function MoviesGrid() {
     return(
         <div className="movies-grid">
             {medialist.map((media) => (
-                <MovieCard key={media.id} movie={media} />
+                <MovieCard key={media.id} movie={media} type={selectedMediaType} />
 
             ))}
         </div>

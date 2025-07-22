@@ -39,7 +39,6 @@ function MovieArea() {
             </div>
             
             <MoviesGrid />
-            {/* pagination here */}
             <Pagination />
 
         </div>
@@ -47,13 +46,3 @@ function MovieArea() {
 }
 
 export default MovieArea;
-
-// language filter done by checking if language is present
-//  in the spoken_languages attribute of movie details using 
-// .includes() method
-
-// order by done by checking if the movie is in the
-// movies array and then sorting it by release date or popularity
-
-// need to populate the movies array with data from the API
-// using the useMovies context to get the movies and genres

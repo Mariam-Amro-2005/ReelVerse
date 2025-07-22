@@ -6,24 +6,19 @@ a, .no-style-link {
 body {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: space-between;
-    /* padding: 1rem 2rem; */
-    
 }
 
 .content {
     display: flex;
     flex-direction: row;
-    height: clamp(100vh, 200vh, auto);
+    height: clamp(200vh, 400vh, auto);
 }
 
 .header {
     display: flex;
-    /* align-items: center; */
     justify-content: space-between;
     width: 100%;
-    /* background: #353535; */
     background-color: #2a2929;
     color: white;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
@@ -50,11 +45,6 @@ body {
     color: white;
     font-weight: 500;
 }
-
-/* .User-Portal a {
-    color: white;
-    text-decoration: none;
-} */
 
 .User-Portal .signup {
     border-right: #ddd 1px solid;
@@ -102,7 +92,6 @@ body {
     right: 5px;
     flex-grow: 1;
     padding: 0.5rem;
-    /* border: #ccc 1px solid; */
     color: white;
     cursor: pointer;
     height: 2.5rem;
@@ -113,6 +102,11 @@ body {
     -moz-border-radius: 25px;
     -ms-border-radius: 25px;
     -o-border-radius: 25px;
+    transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -ms-transition: all ease 1s;
+    -o-transition: all ease 1s;
 }
 
 .search-bar button:hover {
@@ -132,38 +126,17 @@ body {
     padding: 0.1rem;
     padding-bottom: 5px;
 }
+
 .search-bar button:hover img {
     filter: brightness(0.8);
-}
-/* Search results dropdown */
-
-.search-results {
-    position: absolute;
-    top: 2.5rem;
-    width: 100%;
-    background: white;
-    color: black;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.search-results li {
-    padding: 0.5rem;
-    cursor: pointer;
-}
-.search-results li:hover {
-    background-color: #eee;
+    -webkit-filter: brightness(0.8);
 }
 
 /* ------------------------------------------------ */
 
 @media screen and (max-width: 895px){
     .search-bar {
-        width: 55%;
+        width: 85%;
     }
 
 }
@@ -179,16 +152,20 @@ body {
     }
     
     .User-Portal {
-        flex-direction: column;
         align-items: center;
     }
     
+    .User-Portal .login, .User-Portal .signup {
+        border: none;
+    }
+
     .search-bar {
         width: 100%;
+        padding: 1rem;
     }
     
     .search-bar input {
-        width: 90%;
+        width: 95;
     }
     
     .search-bar button {

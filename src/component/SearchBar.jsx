@@ -26,7 +26,7 @@ function SearchBar() {
                 onChange={(e) => setQuery(e.target.value)}
             />
             <button type="submit">
-                <img src="icons8-search-50.png" alt="Search" />
+                <img src="/icons8-search-50.png" alt="Search" />
             </button>
         </form>
     </div>

@@ -8,7 +8,6 @@ function GenreAside() {
 
     useEffect(()=> {
         setGenreList(currentGenreList);
-        console.log(currentGenreList);
     }, [currentGenreList])
 
     if (loading) {
@@ -18,7 +17,6 @@ function GenreAside() {
     const handleGenreClick = (genre) => {
         setSelectedGenre(genre);
         setMode('genre');
-        console.log("clicked!", genre.name);
     };
 
 

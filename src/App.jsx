@@ -1,22 +1,31 @@
-import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
-import {Link} from "react-router-dom";
 import Home from './pages/Home'
 import MoviePage from './pages/MoviePage'
+import {MediaDetailsProvider} from "./context/MediaDetailsContext.jsx";
+import { useParams } from "react-router-dom";
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      {/* <h1>Movies App</h1> */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movie/:id" element={<MoviePage />} />
+        <Route path="/:type/:id" element={<MovieDetailsWrapper />} />
       </Routes>
     </>
   )
 }
 
+function MovieDetailsWrapper() {
+  // const { id } = useParams(); // import useParams from react-router-dom
+
+  return (
+    <MediaDetailsProvider>
+      <MoviePage />
+    </MediaDetailsProvider>
+  );
+}
+
 export default App
+
+// <MediaDetailsProvider><MoviePage /></MediaDetailsProvider>

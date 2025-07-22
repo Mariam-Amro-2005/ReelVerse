@@ -1,10 +1,19 @@
-import React from "react";
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import {useMediaDetailsContext} from "../context/MediaDetailsContext";
+import Header from "../component/Header.jsx";
+import "../css/Header.css";
+
 
 function MoviePage() {
+    const { id, type } = useParams();
+
     return (
-        <div>
-            <h1>Movie Page</h1>
-            {/* Movie details will go here */}
+        <div className="movie-page">
+            <Header />
+            <div className="content">
+                <div>{type} id: {id}</div>
+            </div>
         </div>
     );
 }

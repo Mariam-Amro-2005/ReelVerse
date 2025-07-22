@@ -7,6 +7,7 @@ const apikey = import.meta.env.VITE_TMDB_API_KEY;
 const apiUrl = import.meta.env.VITE_TMDB_API_URL;
 
 export const MediaDetailsProvider = ({ children }) => {
+    const recommendations = "";
     return (
         <MediaDetailsContext.Provider value={{ recommendations }}>
             {children}

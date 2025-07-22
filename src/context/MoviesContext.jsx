@@ -183,7 +183,6 @@ export const MediaProvider = ({ children }) => {
 
     // Fetch media content when genre or page changes
     useEffect(() => {
-        // console.log("clicked!", selectedGenre);
         if (mode !== 'genre') return;
         const page = prevGenre.current === selectedGenre ? currentPage : 1;
         setCurrentPage(page);
@@ -198,11 +197,6 @@ export const MediaProvider = ({ children }) => {
     useEffect(() => {
         if (mode !== 'trending') return;
         Promise.all([fetchTrendingContent(), fetchGenres()]);
-        // const needsGenres = selectedMediaType === 'movie' ? !movieGenres.length : !tvGenres.length;
-        // const needsTrending = selectedMediaType === 'movie' ? !trendingMovies.length : !trendingTvShows.length;
-        // if (needsGenres || needsTrending) {
-        //     Promise.all([fetchTrendingContent(), fetchGenres()]);
-        // }
     }, [mode, currentPage, selectedMediaType]);
 
 
