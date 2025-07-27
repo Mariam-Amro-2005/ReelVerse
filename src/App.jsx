@@ -10,22 +10,11 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:type/:id" element={<MovieDetailsWrapper />} />
+        <Route path="/:type/:id" element={<MediaDetailsProvider><MoviePage /></MediaDetailsProvider>} />
       </Routes>
     </>
   )
 }
 
-function MovieDetailsWrapper() {
-  // const { id } = useParams(); // import useParams from react-router-dom
-
-  return (
-    <MediaDetailsProvider>
-      <MoviePage />
-    </MediaDetailsProvider>
-  );
-}
 
 export default App
-
-// <MediaDetailsProvider><MoviePage /></MediaDetailsProvider>

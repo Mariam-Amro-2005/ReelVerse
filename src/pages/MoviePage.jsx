@@ -1,7 +1,8 @@
-import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import {useMediaDetailsContext} from "../context/MediaDetailsContext";
 import Header from "../component/Header.jsx";
+import Footer from "../component/Footer.jsx";
+import MovieDetails from "../component/MovieDetails.jsx";
+import RecommendedMovies from "../component/RecommendedMovies.jsx";
 import "../css/Header.css";
 
 
@@ -12,8 +13,11 @@ function MoviePage() {
         <div className="movie-page">
             <Header />
             <div className="content">
-                <div>{type} id: {id}</div>
+                <MovieDetails />
+                <RecommendedMovies />
             </div>
+            <Footer />
+
         </div>
     );
 }
