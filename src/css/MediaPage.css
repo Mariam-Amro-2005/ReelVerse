@@ -1,7 +1,7 @@
 .movie-items {
     color: white;
     background: #3c3c3c;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
     width: 100%;
 
@@ -15,6 +15,15 @@
     display: flex;
     flex-direction: row-reverse;
     padding: 1rem;
+    justify-self: center;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6); /* semi-transparent bg to improve readability */
+    padding: 2rem;
+    border-radius: 10px;
+    color: white;
+    width: 65%;
 }
 
 .movie-info .text {
@@ -22,22 +31,27 @@
     flex-direction: column;
     padding: 2rem;
     gap: 1rem;
+    width: 100%;
 }
 
-.movie-info .text .extra-info {
+.movie-info .text .extra-info, .overview {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 80%;
+
 }
 
 .movie-info .text .extra-info .genres {
     display: flex;
-    gap: 1rem;
-    /* border: red solid 1px; */
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .movie-info .text .extra-info .genre {
-    background-color: #959292;
+    background-color: #625d5d;
+    /* width: max-content; */
     padding: 0.3rem;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -47,15 +61,131 @@
 }
 
 .movie-backdrop {
-    /* position: absolute; */
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    border: solid red 1px;
-    /* top: 0; */
+    height: 100%;
+    z-index: 0;
+    opacity: 0.5;
 }
 
 .movie-backdrop img {
-    /* position: absolute; */
-    object-fit: fill;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+
+.movie-details {
+    position: relative;
+    overflow: hidden; /* optional but helps contain backdrop */
+    padding: 2rem;
+}
+
+.poster {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.poster img {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.tagline {
+    font-style: italic;
+}
+
+@media screen and (max-width: 1174px) {
+    .movie-info {
+        width: 100%;
+    }
+}
+
+/* -- Recommendation Panel Area */
+
+.rec-title {
+    margin: 2rem 2.5rem 0rem;
+    border-bottom: #625d5d 2px solid;
+    padding-bottom: 0.5rem;
+}
+
+.recommendations-panel {
+    /*display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    */display: flex;
+    gap: 0.6rem;
+    margin: 2rem 0.8rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    overflow-x: scroll;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.recommendations-panel .rec-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    transition: all ease 0.5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+}
+
+.recommendations-panel .rec-card:hover {
+    transform: perspective(200) translateZ(5px);
+    -webkit-transform: perspective(200) translateZ(5px);
+    -moz-transform: perspective(200) translateZ(5px);
+    -ms-transform: perspective(200) translateZ(5px);
+    -o-transform: perspective(200) translateZ(5px);
+}
+
+.rec-card .card-image img {
+    object-fit: cover;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.rec-card .media-title {
+    position: absolute;
+    width: 100%;
+    bottom: -30%;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 20px 20px;
+    -webkit-border-radius: 0 0 20px 20px;
+    -moz-border-radius: 0 0 20px 20px;
+    -ms-border-radius: 0 0 20px 20px;
+    -o-border-radius: 0 0 20px 20px;
+    transition: all ease-in 1s;
+    -webkit-transition: all ease-in 0.7s;
+    -moz-transition: all ease-in 1s;
+    -ms-transition: all ease-in 1s;
+    -o-transition: all ease-in 1s;
+}
+
+.recommendations-panel .rec-card:hover .media-title {
+    bottom: 0px;
 }

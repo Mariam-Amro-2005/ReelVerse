@@ -18,8 +18,10 @@ function RecommendedMovies() {
         }, [id, type]);
 
     return(
-        <div className="recommendations-panel">
-            {recommendations.map((recommendation) => (
+        <div className="recommendation">
+            <h3 className="rec-title">Recommended for You:</h3>
+            <div className="recommendations-panel">
+                {recommendations.map((recommendation) => (
                 <Link to={`/${type}/${recommendation.id}`} key={recommendation.id}>
                     <div className="rec-card">
                         <div className="card-image">
@@ -34,6 +36,8 @@ function RecommendedMovies() {
                     </div>
                 </Link>
             ))}
+
+            </div>
         </div>
     )
 }
