@@ -2,8 +2,10 @@ import { useParams } from "react-router-dom";
 import Header from "../component/Header.jsx";
 import Footer from "../component/Footer.jsx";
 import MovieDetails from "../component/MovieDetails.jsx";
-import RecommendedMovies from "../component/RecommendedMovies.jsx";
+// import RecommendedMovies from "../component/RecommendedMovies.jsx";
 import "../css/Header.css";
+import "../css/MediaPage.css";
+
 
 
 function MoviePage() {
@@ -14,7 +16,6 @@ function MoviePage() {
             <Header />
             <div className="content">
                 <MovieDetails />
-                <RecommendedMovies />
             </div>
             <Footer />
 

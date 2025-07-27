@@ -21,7 +21,7 @@ function RecommendedMovies() {
         <div className="recommendations-panel">
             {recommendations.map((recommendation) => (
                 <Link to={`/${type}/${recommendation.id}`} key={recommendation.id}>
-                    <div className="movie-card">
+                    <div className="rec-card">
                         <div className="card-image">
                             <img 
                                 src={`https://image.tmdb.org/t/p/w342${recommendation.poster_path}`} 
