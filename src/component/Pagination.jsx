@@ -12,7 +12,7 @@ function Pagination() {
         if (currentPage < totalPages) changePage('next');
     };
 
-    const MAX_VISIBLE_PAGES = 12;
+    const MAX_VISIBLE_PAGES = 8;
 
     const renderPages = () => {
         const pages = [];
@@ -31,7 +31,7 @@ function Pagination() {
 
         if (start > 1) {
             pages.push(
-                <button key={1} onClick={() => handlePageClick(1)}>
+                <button key={1} onClick={() => setCurrentPage(1)}>
                     1
                 </button>
             );
@@ -40,7 +40,7 @@ function Pagination() {
             }
         }
 
-        for (let i = 1; i <= (12); i++){    //totalPages
+        for (let i = start; i <= (end); i++){    //totalPages
             pages.push(
                 <button
                     key={i}
@@ -58,15 +58,20 @@ function Pagination() {
                 pages.push(<span key="end-ellipsis" className="ellipsis">...</span>);
             }
             pages.push(
-                <button key={totalPages} onClick={() => handlePageClick(totalPages)}>
+                <button key={totalPages} onClick={() => setCurrentPage(totalPages)}>
                     {totalPages}
                 </button>
             );
         }
 
+        // return pages;
         return pages;
 
     };
+
+    useEffect(() => {
+        renderPages();
+    },[currentPage]);
 
     return (
     <div className="pagination">

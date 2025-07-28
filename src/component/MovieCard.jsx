@@ -22,7 +22,8 @@ function MovieCard({movie, type}) {
         <Link to={`/${type}/${movie.id}`}>
             <div className="movie-card">
                 <div className="card-image">
-                    <img 
+                    <img
+                        loading="lazy" 
                         src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} 
                         alt={movie?.title || movie?.name} 
                     />

@@ -26,7 +26,7 @@ This product uses the TMDb API but is not endorsed or certified by TMDb.
 ## To Do list
 - [x] Finish up Movie/TV details page with recommendations section
 - [x] Footer that includes TMDB logo and disclamer, along with icons8 mention
-- [ ] Fix pagination
+- [x] Fix pagination
 - [x] Make signup and login items next to logo in small screen widths
 - [x] Set up TV show and Movie mode toggle
 - [ ] Add filter objects option via a form, use TMDB discover API

@@ -169,7 +169,16 @@ export const MediaProvider = ({ children }) => {
         setSearchQuery('');
         setSelectedGenre(null);
         prevMedia.current = selectedMediaType;
-        Promise.all([fetchTrendingContent(), fetchGenres()]);
+        // Only need to fectch genres once
+        if  (selectedMediaType==="movie" && movieGenres){
+            setCurrentMediaList(movieGenres || []);
+            fetchTrendingContent();
+        }else if (selectedMediaType==="tv" && tvGenres){
+            setCurrentMediaList(tvGenres || []);
+            fetchTrendingContent();
+        }else{
+            Promise.all([fetchTrendingContent(), fetchGenres()]);
+        }
     },[selectedMediaType])
 
     // Search media when search query or page changes
