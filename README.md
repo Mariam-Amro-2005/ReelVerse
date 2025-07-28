@@ -24,10 +24,10 @@ ReelVerse is a sleek, React-based movie discovery web app powered by the TMDb AP
 This product uses the TMDb API but is not endorsed or certified by TMDb.
 
 ## To Do list
-- [ ] Finish up Movie/TV details page with recommendations section
-- [ ] Footer that includes TMDB logo and disclamer, along with icons8 mention
+- [x] Finish up Movie/TV details page with recommendations section
+- [x] Footer that includes TMDB logo and disclamer, along with icons8 mention
 - [ ] Fix pagination
-- [ ] Make signup and login items next to logo in small screen widths
+- [x] Make signup and login items next to logo in small screen widths
 - [ ] Set up TV show and Movie mode toggle
 - [ ] Add filter objects option via a form, use TMDB discover API
 

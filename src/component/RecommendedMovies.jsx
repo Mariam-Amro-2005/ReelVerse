@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {useMediaDetailsContext} from "../context/MediaDetailsContext";
 import { Link } from 'react-router-dom';
-// import RecommendationCard from "./RecommendationCard.jsx"
-// import '../css/MoviesGrid.css';
 
 function RecommendedMovies() {
     const { id, type } = useParams();
@@ -12,8 +10,6 @@ function RecommendedMovies() {
             if (id && type) {
                 changeMediaID(Number(id));
                 changeSelectedMediaType(type);
-                console.log("check: ",recommendations);
-
             }
         }, [id, type]);
 
@@ -25,13 +21,14 @@ function RecommendedMovies() {
                 <Link to={`/${type}/${recommendation.id}`} key={recommendation.id}>
                     <div className="rec-card">
                         <div className="card-image">
-                            <img 
+                            <img
+                                loading="lazy" 
                                 src={`https://image.tmdb.org/t/p/w342${recommendation.poster_path}`} 
-                                alt={recommendation?.title || recommendation?.name} 
+                                alt={recommendation?.title || recommendation?.name || "No Title"} 
                             />
                         </div>
                         <div className="media-title">
-                            {recommendation?.title || recommendation?.name}
+                            {recommendation?.title || recommendation?.name || "No Title"}
                         </div>
                     </div>
                 </Link>
@@ -43,9 +40,3 @@ function RecommendedMovies() {
 }
 
 export default RecommendedMovies;
-
-// {recommendations.map((recommendation) => {
-//                <RecommendationCard movie={recommendation} type={type} />
-//            })}
-
-// no need for pagination, just make panel slide. overflow hidden, overflow y= scroll
