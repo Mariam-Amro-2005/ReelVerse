@@ -8,34 +8,33 @@ function MovieArea() {
     const {loading, mode, currentMediaList, selectedMediaType, toggleMediaType, changePage} = useMediaContext();
 
     const [mediaSelected, setMediaSelected] = useState(selectedMediaType === 'movie' ? 'Movies': 'TV Shows');
-    
+    const [isActive, setIsActive] = useState(false);
+
+    const handleToggle = () => {
+        setIsActive(prev => !prev);
+        toggleMediaType();
+        console.log(isActive);
+    };
 
     useEffect(() => {
-        //Switch media type based on selection
         setMediaSelected(selectedMediaType === 'movie' ? 'Movies': 'TV Shows');
     }, [selectedMediaType, mode, currentMediaList]);
 
     return(
         <div className="movie-area">
-            <div className="movie-header" onClick={()=> toggleMediaType()} >{mediaSelected}</div>
-            <div className="filters">
-                <div className="order-by">
-                    <label htmlFor="orderBy"> Order by</label>
-                    <select id="orderBy">
-                        <option value="release_date">Release Date</option>
-                        <option value="popularity">Popularity</option>
-                </select>
+            <div className="movie-header">
+                <div className="title">{mediaSelected}</div>
+                <div className="toggle-wrapper">
+                    <div className="labels">
+                        <div>Movies</div>
+                        <div>Tvs</div>
+                    </div>
+                    <div className="toggle">
+                        <div className={`toggle-button ${isActive ? "toggle-active" : ""}`}  onClick={()=> handleToggle()} ></div>
+                    </div>
                 </div>
-
-                <div className="language-filter">
-                    <label htmlFor="languageFilter">Language filter</label>
-                    <select id="languageFilter">
-                        <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                        <option value="fr">French</option>
-                        {/* Add more languages as needed */}
-                    </select>
-                </div>
+            </div>
+            <div className="filters">Filters
             </div>
             
             <MoviesGrid />

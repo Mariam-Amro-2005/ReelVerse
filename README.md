@@ -28,6 +28,7 @@ This product uses the TMDb API but is not endorsed or certified by TMDb.
 - [x] Footer that includes TMDB logo and disclamer, along with icons8 mention
 - [ ] Fix pagination
 - [x] Make signup and login items next to logo in small screen widths
-- [ ] Set up TV show and Movie mode toggle
+- [x] Set up TV show and Movie mode toggle
 - [ ] Add filter objects option via a form, use TMDB discover API
+- [ ] Fetch both tv and movie trending/genre data togehter to reduce loading
 
