@@ -24,7 +24,7 @@ function Header() {
         <div className="header">
             <Link to="/" className="no-style-link" onClick={() => handleLogoClick()}>
                 <div className="logo">
-                    <img src="/icons8-clapperboard-white-50.png" alt="Logo"/>
+                    <img src={`${import.meta.env.BASE_URL}/icons8-clapperboard-white-50.png`} alt="Logo"/>
                     <div className="logo-text">ReelVerse</div>
                 </div>
             </Link>

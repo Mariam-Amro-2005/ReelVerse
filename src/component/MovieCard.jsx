@@ -32,8 +32,7 @@ function MovieCard({movie, type}) {
                     <h3 className="media-title">{movie?.title || movie?.name}</h3>
                     <div className="card-bottom">
                         <p className="media-vote">⭐ {movie.vote_average}</p>
-                        <img className="like-button" src={likedPicUrl} onClick={handleLike}></img>
-
+                        <img className="like-button" src={import.meta.env.BASE_URL+likedPicUrl} onClick={handleLike}></img>
                     </div>
                 </div>
             </div>
